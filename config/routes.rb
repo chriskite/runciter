@@ -1,28 +1,4 @@
 Runciter::Application.routes.draw do
-  get "runs/index"
-
-  get "runs/create"
-
-  get "runs/show"
-
-  get "runs/update"
-
-  get "tasks/index"
-
-  get "tasks/create"
-
-  get "tasks/show"
-
-  get "tasks/update"
-
-  get "apps/index"
-
-  get "apps/create"
-
-  get "apps/show"
-
-  get "apps/update"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -80,8 +56,8 @@ Runciter::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  scope module: :api, constraints: {format: 'json'} do
-    resources :apps, only: [:create, :update] do
+  namespace :api, constraints: {format: 'json'} do
+    resources :apps, only: [:create, :show, :index, :update] do
       resources :tasks, only: [:create, :show, :index, :update, :destroy] do
         resources :runs, only: [:create, :show, :index, :update, :destroy]
       end
