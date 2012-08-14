@@ -25,6 +25,7 @@ gem 'rspec-rails', '~> 2.0'
 gem 'twitter-bootstrap-rails'
 gem 'mongoid', '~> 3.0.0'
 gem 'rails-backbone', '~> 0.7.2'
+gem 'parse-cron', '~> 0.1.1'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
