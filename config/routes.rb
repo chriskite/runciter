@@ -56,11 +56,4 @@ Runciter::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  namespace :api, constraints: {format: 'json'} do
-    resources :apps, only: [:create, :show, :index, :update] do
-      resources :tasks, only: [:create, :show, :index, :update, :destroy] do
-        resources :runs, only: [:create, :show, :index, :update, :destroy]
-      end
-    end
-  end
 end
