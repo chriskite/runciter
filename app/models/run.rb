@@ -3,7 +3,8 @@ class Run
   field :steps, type: Integer
   field :steps_done, type: Integer
   field :heartbeat_interval, type: Integer
-  field :last_heartbeat, type: Time
+  field :last_heartbeat_at, type: Time
+  field :started_at, type: Time
   field :finished_at, type: Time
   field :state, type: String
   field :message, type: String

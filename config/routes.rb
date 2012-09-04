@@ -59,6 +59,7 @@ Runciter::Application.routes.draw do
   api_server = Jimson::Server.with_routes do
     namespace 'apps', Api::AppHandler
     namespace 'tasks', Api::TaskHandler
+    namespace 'runs', Api::RunHandler
   end
   match "/api" => api_server
 
