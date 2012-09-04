@@ -6,6 +6,10 @@ module Api
       App.all
     end
 
+    def get(id)
+      App.find(id)
+    end
+
     def create(name)
       App.find_or_create_by(name: name)
     end
