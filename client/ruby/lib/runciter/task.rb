@@ -12,11 +12,15 @@ module Runciter
     end
 
     def run!(&block)
-      run = Run.new(app, self, @opts)
-      block.call(run)
-      run.finish!
+      run = Run.new(@app, self, @opts)
+
+      begin
+        block.call(run)
       rescue
         run.die!($!)
+      end
+
+      run.finish!
     end
 
     protected

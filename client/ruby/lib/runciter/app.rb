@@ -1,34 +1,27 @@
 module Runciter
   class App
     attr_reader :id,
-                :api,
-                :name,
-                :heartbeat_interval,
-                :endpoint
+                :api
 
-    def initialize(opts)
-      name = opts[:name]
-      endpoint = opts[:endpoint]
+    def initialize(name, endpoint, opts = {})
+      @name = name
+      @endpoint = URI(endpoint)
       heartbeat_interval = opts[:heartbeat_interval] || 60
 
       @api = Jimson::Client.new(endpoint)
-      @api[:system].isAlive # test connection
+
+      register!
     end
 
     def task(name, opts = {}, &block)
       Task.new(self, name, opts).run!(&block)
     end
 
-    def name=(name)
-      @name = name.to_s
-    end
+    protected
 
-    def heartbeat_interval=(int)
-      @heartbeat_interval = int.to_i
-    end
-
-    def endpoint=(url)
-      @endpoint = URI(url)
+    def register!
+      doc = @api[:apps].create(@name)
+      @id = doc['_id']
     end
 
   end
