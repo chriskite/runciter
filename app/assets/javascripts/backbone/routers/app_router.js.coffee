@@ -7,14 +7,11 @@ class Runciter.Routers.AppRouter extends Backbone.Router
   
   index: ->
     apps = new Runciter.Collections.AppsCollection
-    update = ->
-      apps.fetch
-        success: (apps, resp)->
-          @view = new Runciter.Views.Apps.IndexView(collection: apps)
-          $("#apps").html(@view.render().el)
-    
-    update()
-    setInterval(update, 5000)
+    view = new Runciter.Views.Apps.IndexView(el: $('#apps'), model: apps)
+    apps.fetch()
+    setInterval ->
+      apps.fetch()
+    , 10000
 
   show: ->
     @view = new Runciter.Views.Apps.ShowView()

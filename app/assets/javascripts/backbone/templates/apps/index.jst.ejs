@@ -1,6 +1,10 @@
-<h1>Apps</h1>
 <ul>
     <% apps.each(function(app) { %>
         <li><%= app.get('name') %></li>
+        <ul>
+        <% app.get('tasks').each(function(task) { %>
+            <li><%= task.get('name') %></li>
+        <% }); %>
+        </ul>
     <% }); %>
 </ul>
