@@ -1,10 +1,28 @@
-<ul>
-    <% apps.each(function(app) { %>
-        <li><%= app.get('name') %></li>
-        <ul>
+<% apps.each(function(app) { %>
+    <div class="span4 well app">
+        <h2><%= app.get('name') %></h2>
         <% app.get('tasks').each(function(task) { %>
-            <li><%= task.get('name') %></li>
+            <div class="task">
+                <h3><%= task.get('name') %></h3>
+                <% var run = task.get('run'); %>
+                <% if(run != undefined) { %>
+                    <table>
+                        <tr>
+                            <th>Started</th>
+                            <th>Finished</th>
+                            <th>State</th>
+                        </tr>
+                        <tr>
+                            <td><%= run.get('started_at') %></td>
+                            <td><%= run.get('finished_at') %></td>
+                            <td><%= run.get('state') %></td>
+                        </tr>
+                    </table>
+                    <% if(run.get('message')) { %>
+                        <p><%= run.get('message') %></p>
+                    <% } %>
+                <% } %>
+            </div>
         <% }); %>
-        </ul>
-    <% }); %>
-</ul>
+    </div>
+<% }); %>

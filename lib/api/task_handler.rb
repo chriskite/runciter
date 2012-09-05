@@ -10,5 +10,11 @@ module Api
       Task.destroy(_id: id)
     end
 
+    def latest_run_for(id)
+      task = Task.find(id)
+      raise "No such task" if task.nil?
+      task.runs.last
+    end
+
   end
 end

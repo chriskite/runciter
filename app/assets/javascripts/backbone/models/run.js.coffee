@@ -1,5 +1,9 @@
 class Runciter.Models.Run extends Backbone.Model
-  paramRoot: 'run'
+  url: '/api'
+  rpc: new Backbone.Rpc {namespaceDelimiter: '.'}
+  namespace: 'runs'
+  methods:
+    read: ['get', 'id']
 
   defaults:
     steps: null
@@ -11,6 +15,10 @@ class Runciter.Models.Run extends Backbone.Model
     state: null
     message: null
 
+class Runciter.Models.TaskRun extends Runciter.Models.Run
+  namespace: 'tasks'
+  methods:
+    read: ['latest_run_for', 'id']
+
 class Runciter.Collections.RunsCollection extends Backbone.Collection
   model: Runciter.Models.Run
-  url: '/runs'

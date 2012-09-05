@@ -3,7 +3,7 @@ class Runciter.Models.App extends Backbone.Model
   rpc: new Backbone.Rpc {namespaceDelimiter: '.'}
   namespace: 'apps'
   methods:
-    read: ['get']
+    read: ['get', 'id']
 
   defaults:
     name: null
@@ -17,7 +17,9 @@ class Runciter.Models.App extends Backbone.Model
     collection.fetch
       id: @get('_id')
       success: (tasks)=>
-        @set('tasks', tasks)
+        tasks.bind 'change', =>
+          @set('tasks', tasks)
+          @change()
 
 class Runciter.Collections.AppsCollection extends Backbone.Collection
   model: Runciter.Models.App

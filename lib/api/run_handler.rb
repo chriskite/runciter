@@ -28,7 +28,7 @@ module Api
       def die(run_id, message = "Task died unexpectedly")
         run = find_run(run_id)
 
-        run.state = 'dead'
+        run.state = 'died'
         run.message = message
         run.finished_at = Time.now
 

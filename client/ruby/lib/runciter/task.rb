@@ -16,11 +16,11 @@ module Runciter
 
       begin
         block.call(run)
+        run.finish!
       rescue
         run.die!($!)
       end
 
-      run.finish!
     end
 
     protected
