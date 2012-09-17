@@ -5,8 +5,9 @@ module Api
       def start(task_id, opts = {})
         Run.create!(
           task_id: task_id,
-          steps: opts[:steps],
-          heartbeat_interval: opts[:heartbeat_interval],
+          started_at: Time.now,
+          steps: opts['steps'],
+          heartbeat_interval: opts['heartbeat_interval'],
           state: 'running'
         )
       end

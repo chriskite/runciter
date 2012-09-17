@@ -6,15 +6,22 @@
                 <h3><%= task.get('name') %></h3>
                 <% var run = task.get('run'); %>
                 <% if(run != undefined) { %>
+                    <% var steps = run.get('steps'); %>
                     <table>
                         <tr>
                             <th>Started</th>
                             <th>Finished</th>
+                            <% if(steps) { %>
+                                <th>Steps</th>
+                            <% } %>
                             <th>State</th>
                         </tr>
                         <tr>
                             <td><%= run.get('started_at') %></td>
                             <td><%= run.get('finished_at') %></td>
+                            <% if(steps) { %>
+                                <td><%= run.get('steps_done') %>/<%= steps %></td>
+                            <% } %>
                             <td><%= run.get('state') %></td>
                         </tr>
                     </table>

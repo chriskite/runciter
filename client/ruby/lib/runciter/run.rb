@@ -18,7 +18,7 @@ module Runciter
     end
 
     def die!(e)
-      @app.api[:runs].die(@id, e.message)
+      @app.api[:runs].die(@id, [e.message, e.backtrace].join("\n"))
     end
 
     protected
