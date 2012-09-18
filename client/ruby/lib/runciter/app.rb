@@ -6,7 +6,6 @@ module Runciter
     def initialize(name, endpoint, opts = {})
       @name = name
       @endpoint = URI(endpoint)
-      heartbeat_interval = opts[:heartbeat_interval] || 60
 
       @api = Jimson::Client.new(endpoint)
 

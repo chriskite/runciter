@@ -9,17 +9,12 @@ class Runciter.Models.App extends Backbone.Model
     name: null
     tasks: new Backbone.Collection
 
-  initialize: ->
-    @fetch_tasks()
-
-  fetch_tasks: (actions)->
+  fetch_tasks: (callback)->
     collection = new Runciter.Collections.AppTasksCollection
     collection.fetch
       id: @get('_id')
       success: (tasks)=>
-        tasks.bind 'change', =>
-          @set('tasks', tasks)
-          @change()
+        callback(tasks)
 
 class Runciter.Collections.AppsCollection extends Backbone.Collection
   model: Runciter.Models.App

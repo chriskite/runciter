@@ -1,3 +1,5 @@
+require 'thread'
+
 module Runciter
   class Run
     attr_reader :id
@@ -5,8 +7,10 @@ module Runciter
     def initialize(app, task, opts = {})
       @app, @task = app, task
       @opts = opts
+      @heartbeat_interval = @opts[:heartbeat_interval] || 60
 
       register!
+      run_heartbeat_thread!
     end
 
     def step!(num = 1)
@@ -15,10 +19,12 @@ module Runciter
 
     def finish!
       @app.api[:runs].finish(@id)
+      @heart.terminate
     end
 
     def die!(e)
       @app.api[:runs].die(@id, [e.message, e.backtrace].join("\n"))
+      @heart.terminate
     end
 
     protected
@@ -26,6 +32,13 @@ module Runciter
     def register!
       doc = @app.api[:runs].start(@task.id, @opts)
       @id = doc['_id']
+    end
+
+    def run_heartbeat_thread!
+      @heart = Thread.new do
+        @app.api[:runs].heartbeat(@id)
+        sleep @heartbeat_interval
+      end
     end
 
   end

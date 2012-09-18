@@ -1,2 +1,5 @@
-<h1>App#show</h1>
-<p>Find me in app/assets/javascripts/backbone/templates/apps/show.jst.ejs</p>
+<h2><%= app.get('name') %></h2>
+<% app.get('tasks').each(function(task) { %>
+    <div class="task" id="task-<%= task.get('_id') %>">
+    </div>
+<% }); %>

@@ -8,15 +8,12 @@ class Runciter.Models.Task extends Backbone.Model
   defaults:
     name: null
 
-  initialize: ->
-    @fetch_run()
-
-  fetch_run: (actions)->
+  fetch_run: (callback)->
     run = new Runciter.Models.TaskRun
     run.fetch
       id: @get('_id')
       success: (run)=>
-        @set('run', run)
+        callback(run)
 
 class Runciter.Collections.TasksCollection extends Backbone.Collection
   model: Runciter.Models.Task

@@ -1,0 +1,32 @@
+<h3><%= task.get('name') %></h3>
+<% var run = task.get('run'); %>
+<% if(run != undefined) { %>
+    <% var steps = run.get('steps'); %>
+    <table>
+        <tr>
+            <th>Started</th>
+            <th>Finished</th>
+            <% if(steps) { %>
+                <th>Steps</th>
+            <% } %>
+            <th>State</th>
+            <% if(run.get('state') == 'running') { %>
+                <th>Pulse</th>
+            <% } %>
+        </tr>
+        <tr>
+            <td><%= run.get('started_at') %></td>
+            <td><%= run.get('finished_at') %></td>
+            <% if(steps) { %>
+                <td><%= run.get('steps_done') %>/<%= steps %></td>
+            <% } %>
+            <td><%= run.get('state') %></td>
+            <% if(run.get('state') == 'running') { %>
+                <td>ok</td>
+            <% } %>
+        </tr>
+    </table>
+    <% if(run.get('message')) { %>
+        <p><%= run.get('message') %></p>
+    <% } %>
+<% } %>
