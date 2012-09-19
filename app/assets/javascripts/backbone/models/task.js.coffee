@@ -9,10 +9,11 @@ class Runciter.Models.Task extends Backbone.Model
     name: null
 
   fetch_run: (callback)->
-    run = new Runciter.Models.TaskRun
-    run.fetch
+    task_run = new Runciter.Models.TaskRun
+    task_run.fetch
       id: @get('_id')
-      success: (run)=>
+      success: (task_run)=>
+        run = new Runciter.Models.Run(task_run.attributes)
         callback(run)
 
 class Runciter.Collections.TasksCollection extends Backbone.Collection

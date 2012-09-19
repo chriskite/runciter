@@ -57,7 +57,7 @@ Runciter::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  api_server = Jimson::Server.with_routes do
+  api_server = Jimson::Server.with_routes(:show_errors => true) do
     namespace 'apps', Api::AppHandler
     namespace 'tasks', Api::TaskHandler
     namespace 'runs', Api::RunHandler

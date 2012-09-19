@@ -13,7 +13,10 @@ module Api
     def latest_run_for(id)
       task = Task.find(id)
       raise "No such task" if task.nil?
-      task.runs.last
+      run = task.runs.last
+      return nil if run.nil?
+      run['pulse'] = run.get_pulse
+      run
     end
 
   end

@@ -18,9 +18,9 @@ module Api
         run.inc(:steps_done, by)
       end
 
-      def is_alive(run_id)
+      def pulse(run_id)
         run = find_run(run_id)
-        !!run && !!run.last_heartbeat_at && run.last_heartbeat_at > Time.now - run.heartbeat_interval
+        run.pulse
       end
 
       def heartbeat(run_id)

@@ -1,4 +1,11 @@
-<% apps.each(function(app) { %>
-<div class="span4 well app" id="app-<%= app.get('_id') %>">
-</div>
-<% }); %>
+<% for(var i = 0; i < apps.size(); i += 2) { %>
+    <div class="row-fluid">
+    <% for(var j = 0; j <=1; j++) { %>
+        <% var app = apps.at(i + j); %>
+        <% if(app) { %>
+            <div class="span6 well app" id="app-<%= app.get('_id') %>">
+            </div>
+        <% }; %>
+    <% }; %>
+    </div>
+<% }; %>

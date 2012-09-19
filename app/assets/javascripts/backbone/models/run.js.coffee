@@ -18,7 +18,7 @@ class Runciter.Models.Run extends Backbone.Model
 class Runciter.Models.TaskRun extends Runciter.Models.Run
   namespace: 'tasks'
   methods:
-    read: ['latest_run_for', 'id']
+    read: ['latest_run_for', 'id'],
 
 class Runciter.Collections.RunsCollection extends Backbone.Collection
   model: Runciter.Models.Run

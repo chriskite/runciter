@@ -5,7 +5,7 @@ module Runciter
     it 'works' do
       app = App.new('Spec App', SPEC_URL)
       app.task('Try Things', :steps => 10) do |r|
-        10.times { r.step! }
+        10.times { sleep 1; r.step! }
       end
     end
   end

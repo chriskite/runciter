@@ -22,7 +22,7 @@
             <% } %>
             <td><%= run.get('state') %></td>
             <% if(run.get('state') == 'running') { %>
-                <td>ok</td>
+                <td class="pulse"><%= run.get('pulse') %></td>
             <% } %>
         </tr>
     </table>

@@ -10,4 +10,19 @@ class Run
   field :message, type: String
 
   belongs_to :task
+
+  def get_pulse
+    if !!last_heartbeat_at && !!heartbeat_interval
+      overdue_by = (Time.now - last_heartbeat_at).to_f / heartbeat_interval.to_f
+      if overdue_by < 1.0
+        return 'ok'
+      elsif overdue_by < 3.0
+        return 'slow'
+      end
+      return 'flatline'
+    else
+      return 'n/a'
+    end
+  end
+
 end

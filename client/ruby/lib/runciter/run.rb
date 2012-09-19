@@ -7,7 +7,7 @@ module Runciter
     def initialize(app, task, opts = {})
       @app, @task = app, task
       @opts = opts
-      @heartbeat_interval = @opts[:heartbeat_interval] || 60
+      @opts[:heartbeat_interval] ||= 30
 
       register!
       run_heartbeat_thread!
@@ -37,7 +37,7 @@ module Runciter
     def run_heartbeat_thread!
       @heart = Thread.new do
         @app.api[:runs].heartbeat(@id)
-        sleep @heartbeat_interval
+        sleep @opts[:heartbeat_interval]
       end
     end
 
