@@ -1,4 +1,4 @@
-<h2><%= app.get('name') %></h2>
+<h2 class="appName"><%= app.get('name') %></h2>
 <% app.get('tasks').each(function(task) { %>
     <div class="task" id="task-<%= task.get('_id') %>">
     </div>
