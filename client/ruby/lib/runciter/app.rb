@@ -6,6 +6,7 @@ module Runciter
     def initialize(name, endpoint, opts = {})
       @name = name
       @endpoint = URI(endpoint)
+      @opts = opts
 
       @api = Jimson::Client.new(endpoint)
 
@@ -21,6 +22,9 @@ module Runciter
     def register!
       doc = @api[:apps].create(@name)
       @id = doc['_id']
+      if cron_str = @opts.delete(:cron)
+        @api[:apps].cron(@id, cron_str)
+      end
     end
 
   end
