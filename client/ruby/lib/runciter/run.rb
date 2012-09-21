@@ -15,16 +15,22 @@ module Runciter
 
     def step!(num = 1)
       @app.api[:runs].incr_step(@id, num)
+      rescue
+        warn $!
     end
 
     def finish!
       @app.api[:runs].finish(@id)
       @heart.terminate
+      rescue
+        warn $!
     end
 
     def die!(e)
       @app.api[:runs].die(@id, [e.message, e.backtrace].join("\n"))
       @heart.terminate
+      rescue
+        warn $!
     end
 
     protected
@@ -32,6 +38,8 @@ module Runciter
     def register!
       doc = @app.api[:runs].start(@task.id, @opts)
       @id = doc['_id']
+      rescue
+        warn $!
     end
 
     def run_heartbeat_thread!
@@ -39,6 +47,8 @@ module Runciter
         @app.api[:runs].heartbeat(@id)
         sleep @opts[:heartbeat_interval]
       end
+      rescue
+        warn $!
     end
 
   end

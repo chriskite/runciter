@@ -16,11 +16,10 @@ module Runciter
 
       begin
         block.call(run)
-        run.finish!
+        run.finish! # finish! rescues its own exceptions
       rescue
-        run.die!($!)
+        run.die!($!) # die! rescues its own exceptions
       end
-
     end
 
     protected
@@ -28,6 +27,8 @@ module Runciter
     def register!
       doc = @app.api[:tasks].create(@name, @app.id)
       @id = doc['_id']
+      rescue
+        warn $!
     end
 
   end

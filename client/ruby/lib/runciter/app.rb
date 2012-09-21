@@ -14,7 +14,8 @@ module Runciter
     end
 
     def task(name, opts = {}, &block)
-      Task.new(self, name, opts).run!(&block)
+      task = Task.new(self, name, opts)
+      task.run!(&block)
     end
 
     protected
@@ -25,6 +26,8 @@ module Runciter
       if cron_str = @opts.delete(:cron)
         @api[:apps].cron(@id, cron_str)
       end
+      rescue
+        warn $!
     end
 
   end
