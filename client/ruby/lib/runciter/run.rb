@@ -44,8 +44,10 @@ module Runciter
 
     def run_heartbeat_thread!
       @heart = Thread.new do
-        @app.api[:runs].heartbeat(@id)
-        sleep @opts[:heartbeat_interval]
+        loop do
+          @app.api[:runs].heartbeat(@id)
+          sleep @opts[:heartbeat_interval]
+        end
       end
       rescue
         warn $!
