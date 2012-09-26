@@ -7,7 +7,6 @@ GEM
     activesupport (3.2.8)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    bson (1.6.2)
     builder (3.0.3)
     daemon-kit (0.1.8.2)
       eventmachine (>= 0.12.10)
@@ -19,8 +18,6 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
-    mongo (1.6.2)
-      bson (~> 1.6.2)
     mongoid (3.0.6)
       activemodel (~> 3.1)
       moped (~> 1.1)
@@ -43,7 +40,6 @@ PLATFORMS
 
 DEPENDENCIES
   daemon-kit
-  mongo
   mongoid (~> 3.0.0)
   moped (~> 1.2.5)
   pony

@@ -10,6 +10,7 @@ module Runciter
         :alert => 'test@example.com'
       )
       app.task('Try Things', :steps => 10) do |r|
+        raise 'fail'
         10.times { sleep 1; r.step! }
       end
     end

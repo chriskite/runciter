@@ -16,7 +16,6 @@ gem 'safely'
 
 gem 'moped', '~> 1.2.5'
 gem 'mongoid', '~> 3.0.0'
-gem 'mongo'
 gem 'pony'
 
 # For more information on bundler, please visit http://gembundler.com

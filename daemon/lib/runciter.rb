@@ -47,7 +47,8 @@ module Runciter
         Pony.mail(
           to: alert['emails'],
           subject: 'Runciter Alert',
-          body: alert['msg']
+          body: alert['msg'],
+          from: 'runciter@' + Socket.gethostname
         )
       end
     end
@@ -55,7 +56,7 @@ module Runciter
     def queue_alert(emails, type, obj)
       if !!emails && emails.is_a?(Array) && !emails.empty?
         Alert.push(emails, "#{type.to_s}\n#{obj.inspect}")
-        DaemonKit.logger.debug enqueue to #{emails.join(',')} #{type.to_s} #{obj.inspect}"
+        DaemonKit.logger.debug "enqueue to #{emails.join(',')} #{type.to_s} #{obj.inspect}"
       else
         DaemonKit.logger.warn "no emails for alert"
       end

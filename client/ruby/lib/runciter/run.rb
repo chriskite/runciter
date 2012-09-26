@@ -27,7 +27,7 @@ module Runciter
     end
 
     def die!(e)
-      @app.api[:runs].die(@id, [e.message, e.backtrace].join("\n"))
+      @app.api[:runs].die(@id, [e.message, e.backtrace.join("\n")].join("\n"))
       @heart.terminate
       rescue
         warn $!
