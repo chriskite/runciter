@@ -4,7 +4,7 @@
 # deployment will ensure that the bundle required by your daemon is properly
 # installed.
 
-source :gemcutter
+source :rubygems
 
 # daemon-kit
 gem 'daemon-kit'
@@ -13,5 +13,10 @@ gem 'daemon-kit'
 gem 'safely'
 # gem 'toadhopper' # For reporting exceptions to hoptoad
 # gem 'mail' # For reporting exceptions via mail
+
+gem 'moped', '~> 1.2.5'
+gem 'mongoid', '~> 3.0.0'
+gem 'mongo'
+gem 'pony'
 
 # For more information on bundler, please visit http://gembundler.com

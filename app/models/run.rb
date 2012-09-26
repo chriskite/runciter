@@ -1,5 +1,6 @@
 class Run
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :steps, type: Integer
   field :steps_done, type: Integer
   field :heartbeat_interval, type: Integer
@@ -8,6 +9,7 @@ class Run
   field :finished_at, type: Time
   field :state, type: String
   field :message, type: String
+  field :flatlined, type: Boolean
 
   belongs_to :task
 

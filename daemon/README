@@ -8,7 +8,7 @@ Directories
 ===========
 
 bin/
-  daemon - Stub executable to control your daemon with
+  runciter - Stub executable to control your daemon with
 
 config/
   Environment configuration files
@@ -17,7 +17,7 @@ lib/
   Place for your libraries
 
 libexec/
-  daemon.rb - Your daemon code
+  runciter.rb - Your daemon code
 
 log/
   Log files based on the environment name

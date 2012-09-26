@@ -25,6 +25,14 @@ module Api
       app.save!
     end
 
+    def alert_emails(id, emails)
+      app = find_app(id)
+      raise "Argument must be array of emails" if !emails.is_a?(Array)
+
+      app.alert_emails = emails
+      app.save!
+    end
+
     protected
 
     def find_app(id)
