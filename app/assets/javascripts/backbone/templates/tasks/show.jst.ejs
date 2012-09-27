@@ -4,8 +4,8 @@
     <% var steps = run.get('steps'); %>
     <table class="table">
         <tr>
-            <th>Started</th>
-            <th>Finished</th>
+            <th>Started At</th>
+            <th>Finished At</th>
             <% if(steps) { %>
                 <th>Steps</th>
             <% } %>
@@ -16,11 +16,20 @@
         </tr>
         <tr>
             <td><%= new Date(run.get('started_at')).format('m/d HH:MM') %></td>
-            <td><%= new Date(run.get('finished_at')).format('m/d HH:MM') %></td>
+            <td>
+                <% if(run.get('finished_at')) { %>
+                    <%= new Date(run.get('finished_at')).format('m/d HH:MM') %>
+                <% } %>
+            </td>
             <% if(steps) { %>
-                <td><%= run.get('steps_done') %>/<%= steps %></td>
+                <td><%= run.get('steps_done') || 0 %>/<%= steps %></td>
             <% } %>
-            <td><%= run.get('state') %></td>
+            <td>
+                <% if(run.get('state') == 'running') { %>
+                    <img width="16" src="/assets/running.gif" />
+                <% } %>
+                <%= run.get('state') %>
+            </td>
             <% if(run.get('state') == 'running') { %>
                 <td class="pulse"><%= run.get('pulse') %></td>
             <% } %>
