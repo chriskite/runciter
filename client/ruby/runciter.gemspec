@@ -1,6 +1,6 @@
 spec = Gem::Specification.new do |s|
   s.name = "runciter"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
   s.author = "Chris Kite"
   s.homepage = "http://www.github.com/chriskite/runciter"
   s.platform = Gem::Platform::RUBY
