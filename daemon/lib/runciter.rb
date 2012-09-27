@@ -35,6 +35,7 @@ module Runciter
             # send alert if we haven't already, and set flatlined = true
             queue_alert(run.task.app.alert_emails, :flatline, run) if !run.flatlined
             run.flatlined = true
+            run.state = 'gone away'
           else
             run.flatlined = false
           end

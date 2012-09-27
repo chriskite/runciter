@@ -28,6 +28,8 @@ module Api
 
         run.last_heartbeat_at = Time.now
 
+        run.state = 'running' if 'gone away' == run.state
+
         run.save!
       end
 
