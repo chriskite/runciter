@@ -10,12 +10,9 @@ class App
   has_many :tasks
 
   def is_late
-    if !!cron
-      cp = CronParser.new(cron)
-      return cp.last > (updated_at + 30) # 30 second leeway
-    else
-      return false # can't be late since no cron
-    end
+    return false if cron.nil? # can't be late since no cron
+    expectation = CronParser.new(cron)
+    expectation.last > (updated_at + 30) # 30 second leeway
   end
 
 end
