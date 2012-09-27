@@ -30,14 +30,18 @@ module Runciter
 
     def check_runs
       Run.where('state' => 'running').each do |run|
-        if 'flatline' == run.get_pulse
-          # send alert if we haven't already, and set flatlined = true
-          queue_alert(run.task.app.alert_emails, :flatline, run) if !run.flatlined
-          run.flatlined = true
-        else
-          run.flatlined = false
+        begin
+          if 'flatline' == run.get_pulse
+            # send alert if we haven't already, and set flatlined = true
+            queue_alert(run.task.app.alert_emails, :flatline, run) if !run.flatlined
+            run.flatlined = true
+          else
+            run.flatlined = false
+          end
+          run.save!
+        rescue
+          DaemonKit.logger.warn $!
         end
-        run.save!
       end
     end
 

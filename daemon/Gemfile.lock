@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/chriskite/parse-cron.git
+  revision: 2b1857b997c4ff032663e1f2920a87553f96a28a
+  specs:
+    parse-cron (0.1.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -42,5 +48,6 @@ DEPENDENCIES
   daemon-kit
   mongoid (~> 3.0.0)
   moped (~> 1.2.5)
+  parse-cron!
   pony
   safely

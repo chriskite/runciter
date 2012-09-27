@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/chriskite/parse-cron.git
+  revision: 2b1857b997c4ff032663e1f2920a87553f96a28a
+  specs:
+    parse-cron (0.1.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -78,7 +84,6 @@ GEM
     moped (1.2.0)
     multi_json (1.1.0)
     origin (1.0.6)
-    parse-cron (0.1.1)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -160,7 +165,7 @@ DEPENDENCIES
   jimson (~> 0.9.1)
   jquery-rails
   mongoid (~> 3.0.0)
-  parse-cron (~> 0.1.1)
+  parse-cron!
   rails (= 3.2.8)
   rails-backbone (~> 0.7.2)
   rspec-rails (~> 2.0)

@@ -11,7 +11,10 @@ module Api
     end
 
     def create(name)
-      App.find_or_create_by(name: name)
+      app = App.find_or_create_by(name: name)
+      app.started_at = Time.now
+      app.save!
+      app
     end
 
     def tasks_for(id)

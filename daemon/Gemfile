@@ -11,11 +11,10 @@ gem 'daemon-kit'
 
 # safely (http://github.com/kennethkalmer/safely)
 gem 'safely'
-# gem 'toadhopper' # For reporting exceptions to hoptoad
-# gem 'mail' # For reporting exceptions via mail
 
 gem 'moped', '~> 1.2.5'
 gem 'mongoid', '~> 3.0.0'
 gem 'pony'
+gem 'parse-cron', :git => 'git://github.com/chriskite/parse-cron.git'
 
 # For more information on bundler, please visit http://gembundler.com

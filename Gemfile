@@ -25,8 +25,8 @@ gem 'rspec-rails', '~> 2.0'
 gem 'twitter-bootstrap-rails'
 gem 'mongoid', '~> 3.0.0'
 gem 'rails-backbone', '~> 0.7.2'
-gem 'parse-cron', '~> 0.1.1'
 gem 'jimson', '~> 0.9.1'
+gem 'parse-cron', :git => 'git://github.com/chriskite/parse-cron.git'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
