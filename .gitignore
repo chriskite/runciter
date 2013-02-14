@@ -16,3 +16,7 @@
 
 # Ignore vim swp
 *.swp
+
+# Ignore IntelliJ Project Files
+*.iml
+.idea/**
