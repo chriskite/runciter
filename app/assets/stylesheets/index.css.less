@@ -2,6 +2,7 @@
 @h2Color: #4F8699;
 @h3Color: #6A5E72;
 @tableColor: #563444;
+@disabledColor: #CCC;
 
 .navbar a.brand {
     color: @brightColor;
@@ -18,4 +19,14 @@
 
 div.task table {
     color: @tableColor;
+}
+
+#kiosk-mode {
+    float: right;
+    line-height: 3.0em;
+    color: @disabledColor;
+
+    &.active {
+        color: @brightColor;
+    }
 }
