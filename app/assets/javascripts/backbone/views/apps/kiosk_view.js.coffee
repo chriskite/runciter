@@ -7,9 +7,11 @@ class Runciter.Views.Apps.KioskView extends Backbone.View
   initialize: =>
     @$el.click(@kioskToggle)
 
-  kioskToggle: =>
+  kioskToggle: (e) =>
+    e.preventDefault()
     if @$el.hasClass('active')
       @$el.removeClass('active')
+      $('.app').removeClass('ok not-ok')
       @active = false
     else
       @$el.addClass('active')

@@ -15,6 +15,10 @@ class Runciter.Models.Run extends Backbone.Model
     state: null
     message: null
 
+  isOK: ->
+    return false if @get('state') == 'died'
+    return true
+
 class Runciter.Models.TaskRun extends Runciter.Models.Run
   namespace: 'tasks'
   methods:
