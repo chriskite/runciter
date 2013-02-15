@@ -16,4 +16,4 @@ class Runciter.Views.Apps.KioskView extends Backbone.View
     else
       @$el.addClass('active')
       @active = true
-    @trigger('kioskToggle', @active)
+    @trigger('kioskToggle')

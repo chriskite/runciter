@@ -4,6 +4,11 @@
 @tableColor: #563444;
 @disabledColor: #CCC;
 
+@error: #cf1e60;
+@error-bg: #F7D7D0;
+@success: #63ad23;
+@success-bg: #E7F4DC;
+
 .navbar a.brand {
     color: @brightColor;
 }
@@ -28,5 +33,35 @@ div.task table {
 
     &.active {
         color: @brightColor;
+    }
+}
+
+.app {
+    &.ok, &.not-ok {
+        h2 {
+            font-size: 4.0em;
+        }
+
+        .task {
+            display: none;
+        }
+    }
+
+    &.ok {
+        background: @success-bg;
+        border-color: @success;
+
+        h2 {
+            color: @success;
+        }
+    }
+
+    &.not-ok {
+        background: @error-bg;
+        border-color: @error;
+
+        h2 {
+            color: @error;
+        }
     }
 }

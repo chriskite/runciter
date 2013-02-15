@@ -18,7 +18,11 @@ class Runciter.Views.Apps.ShowView extends Backbone.View
             @$el.removeClass('not-ok').addClass('ok')
           else
             @$el.removeClass('ok').addClass('not-ok')
+
       update()
+
+      window.router.kioskView.on('kioskToggle', update)
+
       setInterval ->
         update()
       , 1000
