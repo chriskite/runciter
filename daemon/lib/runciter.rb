@@ -4,6 +4,23 @@
 module Runciter
   class Watchdog
 
+    def initialize
+      begin
+        @mail_config = DaemonKit::Config.load('mail').to_h(true)
+        if @mail_config.has_key?(:via)
+          @mail_config[:via] = @mail_config[:via].to_sym
+        end
+        if @mail_config.has_key?(:via_options)
+          if @mail_config[:via_options].has_key?(:login)
+            @mail_config[:via_options][:login] = @mail_config[:via_options][:login].to_sym
+          end
+        end
+      rescue
+        DaemonKit.logger.error "You must configure daemon/config/mail.yml. Try starting from mail.yml.example"
+        exit
+      end
+    end
+
     def run!
       loop do
         check_apps
@@ -48,20 +65,25 @@ module Runciter
 
     def send_pending_alerts
       while !!(alert = Alert.pop) do
-        DaemonKit.logger.debug "emailing #{alert['emails'].join(',')} #{alert['msg']}"
-        Pony.mail(
-          to: alert['emails'],
-          subject: 'Runciter Alert',
-          body: alert['msg'],
-          from: 'runciter@' + Socket.gethostname
-        )
+        begin
+          DaemonKit.logger.debug "emailing #{alert['emails'].join(',')} #{alert['msg']}"
+          opts = @mail_config.merge(
+            to: alert['emails'],
+            subject: 'Runciter Alert',
+            body: alert['msg'],
+          )
+          puts opts.inspect
+          Pony.mail(opts)
+        rescue
+          DaemonKit.logger.error $!.to_s
+        end
       end
     end
 
     def queue_alert(emails, type, obj)
       if !!emails && emails.is_a?(Array) && !emails.empty?
-        Alert.push(emails, "#{type.to_s}\n#{obj.inspect}")
-        DaemonKit.logger.debug "enqueue to #{emails.join(',')} #{type.to_s} #{obj.inspect}"
+        Alert.push(emails, obj.to_s)
+        DaemonKit.logger.debug "enqueue to #{emails.join(',')} #{obj}"
       else
         DaemonKit.logger.warn "no emails for alert"
       end

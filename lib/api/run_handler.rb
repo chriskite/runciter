@@ -40,7 +40,7 @@ module Api
         run.message = message
         run.finished_at = Time.now
 
-        Alert.push(run.task.app.alert_emails, "died\n#{run.inspect}")
+        Alert.push(run.task.app.alert_emails, run.to_s)
 
         run.save!
       end

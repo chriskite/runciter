@@ -15,4 +15,8 @@ class App
     expectation.last > (updated_at + 30) # 30 second leeway
   end
 
+  def to_s
+    self.inspect
+  end
+
 end

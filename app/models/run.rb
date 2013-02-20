@@ -27,4 +27,8 @@ class Run
     end
   end
 
+  def to_s
+    self.inspect
+  end
+
 end
