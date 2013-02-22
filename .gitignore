@@ -16,3 +16,10 @@
 
 # Ignore vim swp
 *.swp
+
+# Ignore IntelliJ Project Files
+*.iml
+.idea/**
+
+# Ignore OSX files
+.DS_Store
