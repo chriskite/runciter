@@ -35,7 +35,7 @@ gem 'parse-cron', :git => 'git://github.com/chriskite/parse-cron.git'
 gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
