@@ -7,7 +7,9 @@ module Api
     end
 
     def delete(id)
-      Task.destroy(_id: id)
+      task = Task.find(id)
+      raise "No such task" if task.nil?
+      task.destroy
     end
 
     def latest_run_for(id)

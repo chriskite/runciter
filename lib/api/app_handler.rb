@@ -17,6 +17,11 @@ module Api
       app
     end
 
+    def delete(id)
+      app = find_app(id)
+      app.destroy
+    end
+
     def tasks_for(id)
       app = find_app(id)
       app.tasks
