@@ -19,6 +19,7 @@ module Runciter
         run.finish! # finish! rescues its own exceptions
       rescue
         run.die!($!) # die! rescues its own exceptions
+        raise $! # reraise the exception for the user program to handle
       end
     end
 
