@@ -16,7 +16,7 @@ class Runciter.Models.Run extends Backbone.Model
     message: null
 
   isOK: ->
-    return false if @get('state') == 'died'
+    return false if @get('state') == 'died' || @get('state') == 'gone away'
     return true
 
 class Runciter.Models.TaskRun extends Runciter.Models.Run
@@ -26,3 +26,17 @@ class Runciter.Models.TaskRun extends Runciter.Models.Run
 
 class Runciter.Collections.RunsCollection extends Backbone.Collection
   model: Runciter.Models.Run
+
+class Runciter.Collections.TaskRunsCollection extends Backbone.Collection
+  model: Runciter.Models.Run
+  url: '/api'
+  rpc: new Backbone.Rpc {namespaceDelimiter: '.'}
+  namespace: 'tasks'
+  methods:
+    read: ['recent_runs_for', 'id']
+  status: =>
+    result = 'good'
+    @each (run) ->
+      result = 'warn' if !run.isOK()
+    result = 'bad' if !@at(0).isOK()
+    return result

@@ -8,6 +8,9 @@
 @error-bg: #F7D7D0;
 @success: #63ad23;
 @success-bg: #E7F4DC;
+@running: #4F8699;
+@gone: purple;
+@warning: #CC9900;
 
 .navbar a.brand {
     color: @brightColor;
@@ -37,31 +40,39 @@ div.task table {
 }
 
 .app {
-    &.ok, &.not-ok {
-        h2 {
-            font-size: 4.0em;
-        }
+  h2.kiosk {
+    font-size: 4.0em;
+    margin: -10px 0 10px -10px;
+  }
+}
 
-        .task {
-            display: none;
-        }
+.task {
+  h3 { 
+    float: left;
+
+    &.good {
+      color: @success;
     }
 
-    &.ok {
-        background: @success-bg;
-        border-color: @success;
-
-        h2 {
-            color: @success;
-        }
+    &.warn {
+      color: @warning;
     }
 
-    &.not-ok {
-        background: @error-bg;
-        border-color: @error;
-
-        h2 {
-            color: @error;
-        }
+    &.bad {
+      color: @error;
     }
+  }
+
+  .recentRuns {
+    position: relative;
+    top: 5px;
+    float: right;
+
+    .recentRun {
+      &.done { background-color: @success; }
+      &.died { background-color: @error; }
+      &.running { background-color: @running; }
+      &.gone { background-color: @gone; }
+    }
+  }
 }

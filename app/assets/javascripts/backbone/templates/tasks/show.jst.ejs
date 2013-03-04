@@ -1,6 +1,20 @@
-<h3 class="taskName"><%= task.get('name') %></h3>
-<% var run = task.get('run'); %>
-<% if(run != undefined) { %>
+<%
+var runs = task.get('runs');
+var run = runs.at(0);
+%>
+
+<div class="clearfix">
+  <h3 class="taskName <%= task.status() %>"><%= task.get('name') %></h3>
+  <div class="recentRuns">
+    <% var i = 1; %>
+    <% runs.each(function(run) { %>
+        <span style="opacity: <%= 'running' == run.get('state') ? 1 : 1 / Math.sqrt(i) %>;" class="recentRun <%= run.get('state') %>">&nbsp;</span>
+        <% i++; %>
+    <% }); %>
+  </div>
+</div>
+
+<% if(run != undefined && !window.router.kioskView.active) { %>
     <% var steps = run.get('steps'); %>
     <table class="table">
         <tr>
@@ -39,3 +53,4 @@
         <p><%= run.get('message') %></p>
     <% } %>
 <% } %>
+

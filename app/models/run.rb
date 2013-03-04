@@ -11,6 +11,8 @@ class Run
   field :message, type: String
   field :flatlined, type: Boolean
 
+  index({created_at: -1}, {background: true})
+
   belongs_to :task
 
   def get_pulse

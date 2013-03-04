@@ -13,11 +13,6 @@ class Runciter.Views.Apps.ShowView extends Backbone.View
         tasks.each (task)=>
           taskView = new Runciter.Views.Tasks.ShowView({el: $('#task-' + task.get('_id')), model: task})
           taskView.render()
-        if window.router.kioskView.active
-          if tasks.areOK()
-            @$el.removeClass('not-ok').addClass('ok')
-          else
-            @$el.removeClass('ok').addClass('not-ok')
 
       update()
 
@@ -25,6 +20,6 @@ class Runciter.Views.Apps.ShowView extends Backbone.View
 
       setInterval ->
         update()
-      , 1000
+      , 5000
 
     return this
