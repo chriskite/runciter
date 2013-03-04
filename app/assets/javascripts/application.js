@@ -15,6 +15,7 @@
 //= require jquery-ui.min
 //= require twitter/bootstrap
 //= require underscore
+//= require masonry/jquery.masonry.js
 //= require backbone
 //= require backbone_rails_sync
 //= require backbone_datalink

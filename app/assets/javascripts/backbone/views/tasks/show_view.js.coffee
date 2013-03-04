@@ -3,7 +3,7 @@ Runciter.Views.Tasks ||= {}
 class Runciter.Views.Tasks.ShowView extends Backbone.View
   template: JST["backbone/templates/tasks/show"]
 
-  render: ->
+  render: (callback)->
     @model.fetch_runs (runs)=>
       if(runs.length > 0)
         @model.set('runs', runs)
@@ -11,4 +11,5 @@ class Runciter.Views.Tasks.ShowView extends Backbone.View
         $(@el).find('.recentRuns .running').animate {opacity:.2}
           , 2500
           , (-> $(this).animate({opacity: 1}, 2500))
+        callback(this) if callback
     return this
