@@ -7,12 +7,13 @@ class Runciter.Views.Apps.ShowView extends Backbone.View
     @model.fetch_tasks (tasks)=>
       @model.set('tasks', tasks)
       @$el.html(@template({app: @model}))
+      tasks = @model.get('tasks')
+      tasks.each (task)=>
+        task.view = new Runciter.Views.Tasks.ShowView({el: $('#task-' + task.get('_id')), model: task})
 
       update = =>
-        tasks = @model.get('tasks')
         tasks.each (task)=>
-          taskView = new Runciter.Views.Tasks.ShowView({el: $('#task-' + task.get('_id')), model: task})
-          taskView.render ->
+          task.view.render ->
             $('#apps').masonry({itemSelector: '.app'})
 
       update()

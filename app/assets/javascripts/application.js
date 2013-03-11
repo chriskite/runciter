@@ -19,6 +19,6 @@
 //= require backbone
 //= require backbone_rails_sync
 //= require backbone_datalink
-//= require backbone.rpc.min
+//= require backbone.rpc
 //= require backbone/runciter
 //= require_tree .
