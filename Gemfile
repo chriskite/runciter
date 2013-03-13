@@ -20,11 +20,11 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails', '2.2.1'
 gem 'rspec-rails', '~> 2.0'
 gem 'twitter-bootstrap-rails'
 gem 'mongoid', '~> 3.0.0'
-gem 'rails-backbone', '~> 0.7.2'
+gem 'rails-backbone', :git => 'git://github.com/EvilScott/backbone-rails.git'
 gem 'jimson', '~> 0.9.1'
 gem 'parse-cron', :git => 'git://github.com/chriskite/parse-cron.git'
 

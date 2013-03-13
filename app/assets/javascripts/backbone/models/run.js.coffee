@@ -1,9 +1,9 @@
 class Runciter.Models.Run extends Backbone.Model
   url: '/api'
-  rpc: new Backbone.Rpc {namespaceDelimiter: '.'}
   namespace: 'runs'
-  methods:
-    read: ['get', 'id']
+  method: 'get'
+  params: =>
+    [ @get('id') ]
 
   defaults:
     steps: null
@@ -21,8 +21,9 @@ class Runciter.Models.Run extends Backbone.Model
 
 class Runciter.Models.TaskRun extends Runciter.Models.Run
   namespace: 'tasks'
-  methods:
-    read: ['latest_run_for', 'id'],
+  method: 'latest_run_for'
+  params: =>
+    [ @get('id') ]
 
 class Runciter.Collections.RunsCollection extends Backbone.Collection
   model: Runciter.Models.Run
@@ -30,10 +31,10 @@ class Runciter.Collections.RunsCollection extends Backbone.Collection
 class Runciter.Collections.TaskRunsCollection extends Backbone.Collection
   model: Runciter.Models.Run
   url: '/api'
-  rpc: new Backbone.Rpc {namespaceDelimiter: '.'}
   namespace: 'tasks'
-  methods:
-    read: ['recent_runs_for', 'id']
+  method: 'recent_runs_for'
+  params: =>
+    [ @.id ]
   status: =>
     result = 'good'
     @each (run) ->

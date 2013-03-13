@@ -1,9 +1,9 @@
 class Runciter.Models.Task extends Backbone.Model
   url: '/api'
-  rpc: new Backbone.Rpc {namespaceDelimiter: '.'}
   namespace: 'tasks'
-  methods:
-    read: ['get', 'id']
+  method: 'get'
+  params: =>
+    [ @get('id') ]
 
   defaults:
     name: null
@@ -18,8 +18,8 @@ class Runciter.Models.Task extends Backbone.Model
 
   fetch_runs: (callback)->
     collection = new Runciter.Collections.TaskRunsCollection
+    collection.id = @get('_id')
     collection.fetch
-      id: @get('_id')
       success: (runs)=>
         callback(runs)
 
@@ -32,7 +32,7 @@ class Runciter.Collections.TasksCollection extends Backbone.Collection
 class Runciter.Collections.AppTasksCollection extends Backbone.Collection
   model: Runciter.Models.Task
   url: '/api'
-  rpc: new Backbone.Rpc {namespaceDelimiter: '.'}
   namespace: 'apps'
-  methods:
-    read: ['tasks_for', 'id']
+  method: 'tasks_for'
+  params: =>
+    [ @.id ]
