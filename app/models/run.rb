@@ -11,9 +11,7 @@ class Run
   field :message, type: String
   field :flatlined, type: Boolean
 
-  index({created_at: -1}, {background: true})
-
-  belongs_to :task
+  embedded_in :task
 
   def get_pulse
     if !!last_heartbeat_at && !!heartbeat_interval

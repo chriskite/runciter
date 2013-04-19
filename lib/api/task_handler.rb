@@ -24,7 +24,7 @@ module Api
     def recent_runs_for(id, num = 20)
       task = Task.find(id)
       raise "No such task" if task.nil?
-      runs = task.runs.order_by(created_at: :desc).limit(num)
+      runs = task.runs.reverse
       runs.each { |run| run['pulse'] = run.get_pulse }
       runs
     end
