@@ -1,4 +1,6 @@
 class Task
+  RUN_LIMIT = 20
+
   include Mongoid::Document
   include Mongoid::Timestamps
   field :name, type: String
@@ -8,7 +10,9 @@ class Task
   embeds_many :runs
   index 'runs.state' => 1 # used by the daemon
 
-  before_save do
-    runs = runs[1..30] if !!runs
+  def trim_runs!
+    if runs.count > RUN_LIMIT
+      pop(:runs, -1)
+    end
   end
 end

@@ -13,6 +13,10 @@ class Run
 
   embedded_in :task
 
+  after_create do
+    task.trim_runs!
+  end
+
   def get_pulse
     if !!last_heartbeat_at && !!heartbeat_interval
       overdue_by = (Time.now - last_heartbeat_at).to_f / heartbeat_interval.to_f
