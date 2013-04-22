@@ -18,10 +18,8 @@ class Runciter.Views.Apps.ShowView extends Backbone.View
 
       update()
 
-      window.router.kioskView.on('kioskToggle', update)
-
       setInterval ->
         update()
-      , 5000
+      , 10000
 
     return this

@@ -1,6 +1,7 @@
 <%
 var runs = task.get('runs');
 var run = runs.at(0);
+var steps = run.get('steps');
 %>
 
 <div class="clearfix">
@@ -8,49 +9,47 @@ var run = runs.at(0);
   <div class="recentRuns">
     <% var i = 1; %>
     <% runs.each(function(run) { %>
-        <span style="opacity: <%= 'running' == run.get('state') ? 1 : 1 / Math.sqrt(i) %>;" class="recentRun <%= run.get('state') %>">&nbsp;</span>
+        <span 
+          style="opacity: <%= 'running' == run.get('state') ? 1 : 1 / Math.sqrt(i) %>;"
+          class="recentRun <%= run.get('state') %>"
+          title="
+            <p>
+              <strong>Started At:</strong><span><%= new Date(run.get('started_at')).format('m/d HH:MM') %></span>
+            </p>
+
+            <p>
+              <% if(run.get('finished_at')) { %>
+                <strong>Finished At:</strong> <span><%= new Date(run.get('finished_at')).format('m/d HH:MM') %></span>
+              <% } %>
+            </p>
+
+            <% if(steps) { %>
+              <p>
+                  <strong>Steps:</strong> <span><%= run.get('steps_done') || 0 %>/<%= steps %></span>
+              </p>
+            <% } %>
+
+            <p>
+              <strong>State:</strong>
+              <% if(run.get('state') == 'running') { %>
+                  <img width="16" height="16" src="/assets/running.gif" />
+              <% } %>
+              <%= run.get('state') %>
+            </p>
+
+            <p>
+              <% if(run.get('state') == 'running') { %>
+                  <strong>Pulse</strong>
+                  <span class="pulse"><%= run.get('pulse') %></span>
+              <% } %>
+            </p>
+
+            <% if(run.get('message')) { %>
+                <p><%= run.get('message') %></p>
+            <% } %>
+"
+        >&nbsp;</span>
         <% i++; %>
     <% }); %>
   </div>
 </div>
-
-<% if(run != undefined && !window.router.kioskView.active) { %>
-    <% var steps = run.get('steps'); %>
-    <table class="table">
-        <tr>
-            <th>Started At</th>
-            <th>Finished At</th>
-            <% if(steps) { %>
-                <th>Steps</th>
-            <% } %>
-            <th>State</th>
-            <% if(run.get('state') == 'running') { %>
-                <th>Pulse</th>
-            <% } %>
-        </tr>
-        <tr>
-            <td><%= new Date(run.get('started_at')).format('m/d HH:MM') %></td>
-            <td>
-                <% if(run.get('finished_at')) { %>
-                    <%= new Date(run.get('finished_at')).format('m/d HH:MM') %>
-                <% } %>
-            </td>
-            <% if(steps) { %>
-                <td><%= run.get('steps_done') || 0 %>/<%= steps %></td>
-            <% } %>
-            <td>
-                <% if(run.get('state') == 'running') { %>
-                    <img width="16" height="16" src="/assets/running.gif" />
-                <% } %>
-                <%= run.get('state') %>
-            </td>
-            <% if(run.get('state') == 'running') { %>
-                <td class="pulse"><%= run.get('pulse') %></td>
-            <% } %>
-        </tr>
-    </table>
-    <% if(run.get('message')) { %>
-        <p><%= run.get('message') %></p>
-    <% } %>
-<% } %>
-

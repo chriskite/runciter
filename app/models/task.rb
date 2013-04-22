@@ -1,5 +1,5 @@
 class Task
-  RUN_LIMIT = 20
+  RUN_LIMIT = 15
 
   include Mongoid::Document
   include Mongoid::Timestamps

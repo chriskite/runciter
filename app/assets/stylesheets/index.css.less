@@ -29,22 +29,12 @@ div.task table {
     color: @tableColor;
 }
 
-#kiosk-mode {
-    display: inline-block;
-    float: right;
-    line-height: 2.5em;
-
-    #active {
-        display: none;
-    }
-}
-
 .app {
   width: 550px;
   margin: 10px;
 
-  h2.kiosk {
-    font-size: 4.0em;
+  h2 {
+    font-size: 42px;
     margin: -10px 0 10px -10px;
   }
 }
@@ -52,6 +42,7 @@ div.task table {
 .task {
   h3 { 
     float: left;
+    font-size: 28px;
 
     &.good {
       color: @success;
@@ -70,12 +61,21 @@ div.task table {
     position: relative;
     top: 20px;
     float: right;
+    cursor: pointer;
 
     .recentRun {
+      width: 15px;
+      margin-right: 2px;
+      display: block;
+      float: left;
       &.done { background-color: @success; }
+      &.done:hover { background-color: darken(@success, 15%); }
       &.died { background-color: @error; }
+      &.died:hover { background-color: darken(@error, 15%); }
       &.running { background-color: @running; }
+      &.running:hover { background-color: darken(@running, 15%); }
       &.gone { background-color: @gone; }
+      &.gone:hover { background-color: darken(@gone, 15%); }
     }
   }
 }

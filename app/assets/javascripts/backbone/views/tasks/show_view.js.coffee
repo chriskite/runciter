@@ -12,4 +12,5 @@ class Runciter.Views.Tasks.ShowView extends Backbone.View
           , 2500
           , (-> $(this).animate({opacity: 1}, 2500))
         callback(this) if callback
+        $(@el).find('.recentRun').tooltip(html: true, placement: 'bottom')
     return this

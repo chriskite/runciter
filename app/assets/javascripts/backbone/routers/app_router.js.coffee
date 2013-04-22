@@ -7,7 +7,6 @@ class Runciter.Routers.AppRouter extends Backbone.Router
   
   index: ->
     apps = new Runciter.Collections.AppsCollection
-    @kioskView = new Runciter.Views.Apps.KioskView
     view = new Runciter.Views.Apps.IndexView(el: $('#apps'), model: apps)
 
     apps.fetch
