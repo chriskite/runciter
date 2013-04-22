@@ -8,9 +8,9 @@ class Runciter.Views.Tasks.ShowView extends Backbone.View
       if(runs.length > 0)
         @model.set('runs', runs)
         $(@el).html(@template({task: @model}))
-        $(@el).find('.recentRuns .running').animate {opacity:.2}
-          , 2500
-          , (-> $(this).animate({opacity: 1}, 2500))
-        callback(this) if callback
+        $(@el).find('.recentRuns .running').animate {opacity: .25}
+          , 5000
+          , (-> $(this).animate({opacity: 1}, 5000))
         $(@el).find('.recentRun').tooltip(html: true, placement: 'bottom')
+        callback(this) if callback
     return this
