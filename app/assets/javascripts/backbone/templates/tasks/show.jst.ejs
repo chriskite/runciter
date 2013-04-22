@@ -31,15 +31,12 @@ var steps = run.get('steps');
 
             <p>
               <strong>State:</strong>
-              <% if(run.get('state') == 'running') { %>
-                  <img width="16" height="16" src="/assets/running.gif" />
-              <% } %>
               <%= run.get('state') %>
             </p>
 
             <p>
               <% if(run.get('state') == 'running') { %>
-                  <strong>Pulse</strong>
+                  <strong>Pulse:</strong>
                   <span class="pulse"><%= run.get('pulse') %></span>
               <% } %>
             </p>
